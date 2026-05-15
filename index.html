@@ -182,6 +182,21 @@
         .mod-firstaid .card-link { color: #c0392b; }
         .mod-firstaid .card-link:hover { background: #fdedec; }
 
+        .mod-psychology { border-left-color: #8e44ad; }
+        .mod-psychology .card-icon { background: #f4ecf7; color: #8e44ad; }
+        .mod-psychology .card-link { color: #8e44ad; }
+        .mod-psychology .card-link:hover { background: #f4ecf7; }
+
+        .mod-stories { border-left-color: #16a085; }
+        .mod-stories .card-icon { background: #e8f8f5; color: #16a085; }
+        .mod-stories .card-link { color: #16a085; }
+        .mod-stories .card-link:hover { background: #e8f8f5; }
+
+        .mod-test { border-left-color: #d35400; }
+        .mod-test .card-icon { background: #fef5e7; color: #d35400; }
+        .mod-test .card-link { color: #d35400; }
+        .mod-test .card-link:hover { background: #fef5e7; }
+
         /* Section Detail */
         .section-detail {
             background: white;
@@ -250,7 +265,7 @@
             padding: 0 20px;
         }
         .accordion-item.active .accordion-body {
-            max-height: 500px;
+            max-height: 800px;
             padding: 15px 20px;
         }
 
@@ -323,6 +338,81 @@
             font-size: 0.85em;
             color: #777;
             margin-top: 5px;
+        }
+
+        /* Breathing Exercise */
+        .breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #8e44ad;
+            margin: 20px auto;
+            animation: breathe 8s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Test Styles */
+        .test-question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 12px;
+        }
+        .test-question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .test-question label {
+            display: block;
+            padding: 8px 12px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .test-question label:hover {
+            background: #eaf2f8;
+        }
+        .test-question input[type="radio"] {
+            margin-right: 10px;
+        }
+        .test-result {
+            display: none;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #1a1a2e;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #0f3460;
+            transform: translateY(-2px);
         }
 
         /* QR Block */
@@ -444,8 +534,32 @@
                     <div class="card-icon">🩹</div>
                     <div class="card-title">Первая помощь</div>
                 </div>
-                <div class="card-body">Переохлаждение, растяжения, мозоли</div>
+                <div class="card-body">Переохлаждение, растяжения, тепловой удар</div>
                 <span class="card-link">Подробнее →</span>
+            </div>
+            <div class="module-card mod-psychology" onclick="document.getElementById('sec-psychology').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">🧠</div>
+                    <div class="card-title">Психология выживания</div>
+                </div>
+                <div class="card-body">Борьба с паникой, самоконтроль, работа в команде</div>
+                <span class="card-link">Подробнее →</span>
+            </div>
+            <div class="module-card mod-stories" onclick="document.getElementById('sec-stories').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">📖</div>
+                    <div class="card-title">Реальные истории</div>
+                </div>
+                <div class="card-body">Разбор случаев с анализом ошибок и выводов</div>
+                <span class="card-link">Подробнее →</span>
+            </div>
+            <div class="module-card mod-test" onclick="document.getElementById('sec-test').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">📝</div>
+                    <div class="card-title">Тест: Готов ли ты?</div>
+                </div>
+                <div class="card-body">Проверь свою готовность к горному походу</div>
+                <span class="card-link">Пройти тест →</span>
             </div>
         </div>
 
@@ -522,6 +636,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        💊 Полный список походной аптечки <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Обязательный минимум (всегда с собой):</strong></p>
+                        <ul class="checklist">
+                            <li>Перевязочные: бинт стерильный (2 шт.), бинт эластичный, пластыри разные</li>
+                            <li>Антисептики: хлоргексидин или мирамистин, зелёнка/йод в карандаше</li>
+                            <li>Обезболивающее/жаропонижающее: парацетамол или ибупрофен</li>
+                            <li>Антигистаминное (от аллергии): супрастин или зиртек</li>
+                            <li>Средства от отравления: смекта, активированный уголь, регидрон</li>
+                            <li>Солнцезащитный крем (SPF 50+), гигиеническая помада с SPF</li>
+                        </ul>
+                        <div class="alert-box alert-info">
+                            ℹ️ Источник: рекомендации МЧС России по комплектации походной аптечки. Все лекарства принимаются строго по инструкции, перед походом проконсультируйся с врачом.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -555,6 +688,20 @@
                             <li>«Золотое правило»: к 14:00 ты должен быть на самой высокой точке и начать спуск</li>
                             <li>Видишь тучи — немедленно спускайся с хребтов и вершин!</li>
                         </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🔥 Как развести костёр в сырую погоду <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Найди сухостой — мёртвые нижние ветки хвойных деревьев (они сухие даже в дождь)</li>
+                            <li>Настрогай тонкую стружку-«паутинку» ножом</li>
+                            <li>Используй бересту как природный розжиг (горит даже мокрая!)</li>
+                            <li>Сложи растопку «шалашиком»: стружка внутри, палочки потолще — снаружи</li>
+                            <li>Защити костёр от ветра и дождя телом или курткой при поджигании</li>
+                        </ol>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -631,6 +778,23 @@
                         </ul>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🧗 Горная болезнь (высотная гипоксия) <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Признаки:</strong> головная боль, тошнота, слабость, одышка, потеря аппетита. Может начаться с 2500-3000 метров.</p>
+                        <ul>
+                            <li>Набирай высоту постепенно — не более 500 м в день</li>
+                            <li>Пей много воды (3-4 литра в сутки)</li>
+                            <li>При первых симптомах — остановись, отдохни</li>
+                            <li>Если состояние ухудшается — НЕМЕДЛЕННО спускайся вниз!</li>
+                        </ul>
+                        <div class="alert-box alert-danger">
+                            ⚠️ Горная болезнь смертельно опасна! Отёк лёгких или мозга может развиться за несколько часов. Единственное верное лечение — срочный спуск.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -684,13 +848,28 @@
                         </ol>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        📞 Экстренные телефоны МЧС <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <ul>
+                            <li><strong>Единый номер спасения:</strong> 112 (работает даже без сим-карты и сети)</li>
+                            <li><strong>МЧС России, горячая линия:</strong> 8 (800) 775-17-17</li>
+                            <li><strong>Аварийно-спасательная служба по городу:</strong> уточните местный номер перед походом</li>
+                        </ul>
+                        <div class="alert-box alert-info">
+                            ℹ️ Перед походом обязательно узнай и запиши телефоны местного поисково-спасательного отряда в регионе, куда направляешься.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Section: First Aid -->
         <div class="section-detail" id="sec-firstaid">
             <h2><span style="color:#c0392b">🩹</span> Первая помощь</h2>
-            <p>Базовые алгоритмы, которые должен знать каждый турист.</p>
+            <p>Базовые алгоритмы, которые должен знать каждый турист. Источник: рекомендации МЧС России.</p>
 
             <div class="accordion">
                 <div class="accordion-item">
@@ -712,7 +891,7 @@
                         🤸 Растяжение связок <span class="arrow">▼</span>
                     </div>
                     <div class="accordion-body">
-                        <p><strong>Правило RICE:</strong></p>
+                        <p><strong>Правило RICE (англ. аббревиатура: Rest, Ice, Compression, Elevation):</strong></p>
                         <ul>
                             <li><strong>R</strong>est — Покой, не нагружай сустав</li>
                             <li><strong>I</strong>ce — Холод на 15-20 минут (через ткань)</li>
@@ -735,6 +914,245 @@
                         </ol>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🩸 Кровотечения и раны <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>При сильном кровотечении:</strong></p>
+                        <ol>
+                            <li>Наложи жгут выше раны (запиши время наложения!)</li>
+                            <li>Жгут можно держать не более 1 часа летом и 30 минут зимой</li>
+                            <li>Обработай края раны антисептиком</li>
+                            <li>Наложи стерильную повязку</li>
+                        </ol>
+                        <div class="alert-box alert-danger">
+                            ⚠️ При артериальном кровотечении (кровь ярко-алая, бьёт фонтаном) — жгут НЕОБХОДИМ, счёт идёт на минуты!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Psychology -->
+        <div class="section-detail" id="sec-psychology">
+            <h2><span style="color:#8e44ad">🧠</span> Психология выживания</h2>
+            <p>Знания и снаряжение бесполезны, если теряется контроль над эмоциями. Психологическая устойчивость — такой же важный навык, как умение развести костёр. Источник: А.И. Мартынов «Психология альпинизма», МЧС России.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        😱 Как справиться с паникой: техника 5-4-3-2-1 <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Это техника заземления, рекомендованная психологами МЧС для экстремальных ситуаций. Когда накатывает паника — последовательно найди глазами и назови (мысленно или вслух):</p>
+                        <ol>
+                            <li><strong>5 предметов,</strong> которые ты видишь (камень, дерево, облако...)</li>
+                            <li><strong>4 звука,</strong> которые ты слышишь (ветер, птица, своё дыхание...)</li>
+                            <li><strong>3 ощущения</strong> телом (ткань одежды, тепло солнца, холод камня...)</li>
+                            <li><strong>2 запаха</strong> (хвоя, земля...)</li>
+                            <li><strong>1 вкус</strong> (можно просто сглотнуть и ощутить его)</li>
+                        </ol>
+                        <p>Этот простой алгоритм «возвращает» мозг из режима паники в реальность за 1-2 минуты.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🌬️ Дыхательное упражнение «Квадрат» <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Используется спецназом и спасателями для быстрого успокоения в стрессе:</p>
+                        <div class="breathing-circle">Вдох 4 сек<br>Задержка 4 сек<br>Выдох 4 сек<br>Задержка 4 сек</div>
+                        <ol>
+                            <li>Вдох носом — 4 секунды</li>
+                            <li>Задержка дыхания — 4 секунды</li>
+                            <li>Выдох ртом — 4 секунды</li>
+                            <li>Задержка — 4 секунды</li>
+                        </ol>
+                        <p>Повтори 4-5 циклов. Сердцебиение замедлится, мысли станут яснее.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🤝 Работа в команде во время стресса <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>В экстремальной ситуации группа либо объединяется, либо разваливается. Правила, которые спасают:</p>
+                        <ul>
+                            <li><strong>Назначь лидера.</strong> В стрессе не может быть «общей демократии» — кто-то один принимает решения</li>
+                            <li><strong>Говори спокойно и чётко.</strong> Крик и истерика заразительны — не поддавайся и не создавай их сам</li>
+                            <li><strong>Дай каждому задачу.</strong> Даже простую («смотри за временем», «следи за водой»). Занятость снижает тревогу</li>
+                            <li><strong>Поддерживай слабых.</strong> Не обвиняй того, кто замедлился или испугался — завтра на его месте можешь быть ты</li>
+                        </ul>
+                        <div class="alert-box alert-info">
+                            ℹ️ По данным Федерации альпинизма России, более 70% успешных спасательных операций обязаны не физической силе, а слаженной командной работе и психологической устойчивости участников.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🎯 Метод «Маленьких побед» <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Когда ситуация кажется безвыходной, а силы на исходе, психика может «сломаться». Этот метод, используемый военными психологами, помогает этого избежать:</p>
+                        <ol>
+                            <li>Разбей большую проблему на крошечные шаги. Не «как нам спастись?», а «сейчас я поставлю палатку», «сейчас вскипячу воду»</li>
+                            <li>Хвали себя за каждый выполненный шаг (мысленно или вслух)</li>
+                            <li>Двигайся от одной маленькой цели к другой — это даёт ощущение контроля</li>
+                        </ol>
+                        <p><strong>Пример:</strong> Ты потерялся. Не думай «как отсюда выбраться?». Думай: «Сейчас я найду сухое место. Сейчас я соберу дрова. Сейчас я разведу огонь». Контроль над малыми действиями возвращает контроль над сознанием.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Real Stories -->
+        <div class="section-detail" id="sec-stories">
+            <h2><span style="color:#16a085">📖</span> Реальные истории</h2>
+            <p>Разбор реальных происшествий с выводами. Чужие ошибки — лучший учитель. Все случаи основаны на открытых отчётах МЧС России и публикациях СМИ.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🏔️ Алтай, 2025: Незарегистрированная группа <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Ситуация:</strong> Группа из 4 человек отправилась в поход по Катунскому хребту, не зарегистрировав маршрут в МЧС. На третий день один из участников получил серьёзную травму ноги. Связи не было. Родственники забили тревогу только на пятый день, когда группа не вышла на связь в обещанное время.</p>
+                        <p><strong>Результат:</strong> Спасатели нашли группу на шестой день. Пострадавший выжил, но получил серьёзное обморожение конечностей из-за длительного нахождения без движения на холоде.</p>
+                        <p><strong>❌ Ошибки:</strong></p>
+                        <ul>
+                            <li>Маршрут не зарегистрирован — спасатели не знали, где искать</li>
+                            <li>Не было спутникового телефона или трекера</li>
+                            <li>Группа разделилась, что ещё больше осложнило ситуацию</li>
+                        </ul>
+                        <p><strong>✅ Что нужно было сделать:</strong></p>
+                        <ul>
+                            <li>Зарегистрировать маршрут в МЧС (бесплатно, 10 минут)</li>
+                            <li>Иметь при себе спутниковый трекер для подачи сигнала SOS</li>
+                            <li>Не разделяться — оставаться всем вместе с пострадавшим</li>
+                        </ul>
+                        <div class="alert-box alert-warning">
+                            ⚠️ Вывод: Регистрация маршрута — не бюрократия, а твоя страховка. В 2025 году на Алтае 50% инцидентов произошли с незарегистрированными группами.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        🌫️ Курилы, 2025: Туман и потеря ориентира <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Ситуация:</strong> Организованная туристическая группа с гидом совершала восхождение на вулкан Баранского. Внезапно опустился густой туман, видимость упала до 5 метров. Гид плохо ориентировался в условиях нулевой видимости. Группа разделилась на две части и потеряла друг друга.</p>
+                        <p><strong>Результат:</strong> Одна подгруппа провела ночь на склоне без палаток. К счастью, обошлось без жертв — спасатели нашли всех на следующее утро.</p>
+                        <p><strong>❌ Ошибки:</strong></p>
+                        <ul>
+                            <li>Гид не имел GPS-навигатора, полагался только на видимые ориентиры</li>
+                            <li>У группы не было единой верёвочной связки для движения в тумане</li>
+                            <li>Турбаза также не зарегистрировала маршрут группы</li>
+                        </ul>
+                        <p><strong>✅ Что нужно было сделать:</strong></p>
+                        <ul>
+                            <li>При первых признаках тумана — связаться верёвкой и НЕ разделяться</li>
+                            <li>Иметь GPS-трекер с записанным треком маршрута</li>
+                            <li>Если видимость нулевая — переждать на месте, не пытаться идти наугад</li>
+                        </ul>
+                        <div class="alert-box alert-warning">
+                            ⚠️ Вывод: Даже в организованной группе ты отвечаешь за себя. Проверь, есть ли у гида навигатор и зарегистрирован ли маршрут.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        ⚡ Кавказ, 2024: Гроза на гребне <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Ситуация:</strong> Двое опытных туристов шли по открытому гребню на высоте 3200 метров. Прогноз погоды обещал ясный день, но к полудню резко собралась гроза. Туристы продолжили движение, надеясь успеть спуститься до начала дождя. Молния ударила в 30 метрах от них, один из туристов получил лёгкое поражение током (онемение конечностей на несколько часов).</p>
+                        <p><strong>Результат:</strong> Обошлось без серьёзных травм, но группа была вынуждена экстренно спускаться под проливным дождём, что привело к сильному переохлаждению обоих.</p>
+                        <p><strong>❌ Ошибки:</strong></p>
+                        <ul>
+                            <li>Игнорирование первых признаков грозы (потемнение неба, отдалённый гром)</li>
+                            <li>Продолжение движения по открытому гребню — самой опасной зоне</li>
+                            <li>Металлические треккинговые палки оставались в руках</li>
+                        </ul>
+                        <p><strong>✅ Что нужно было сделать:</strong></p>
+                        <ul>
+                            <li>При первых признаках грозы — немедленно покинуть гребень и вершину</li>
+                            <li>Отложить всё металлическое снаряжение на 30 метров от места укрытия</li>
+                            <li>Принять безопасную позу: на корточках, ступни вместе, обхватить колени</li>
+                        </ul>
+                        <div class="alert-box alert-warning">
+                            ⚠️ Вывод: В горах «успеть до дождя» — смертельная ловушка мышления. Гроза бьёт по самым высоким точкам — ты не должен быть этой точкой.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Test -->
+        <div class="section-detail" id="sec-test">
+            <h2><span style="color:#d35400">📝</span> Тест: Готов ли ты к горному походу?</h2>
+            <p>Честно ответь на 8 вопросов и узнай, насколько ты подготовлен. Тест составлен на основе рекомендаций МЧС России и Федерации альпинизма России.</p>
+
+            <form id="test-form">
+                <div class="test-question">
+                    <p>1. Зарегистрировал(а) ли ты свой маршрут в МЧС?</p>
+                    <label><input type="radio" name="q1" value="yes"> Да, конечно</label>
+                    <label><input type="radio" name="q1" value="no"> Нет, а зачем?</label>
+                    <label><input type="radio" name="q1" value="dontknow"> Я не знал(а), что это нужно</label>
+                </div>
+                <div class="test-question">
+                    <p>2. Есть ли у тебя бумажная карта маршрута (не только в телефоне)?</p>
+                    <label><input type="radio" name="q2" value="yes"> Да, распечатал(а) и взял(а) с собой</label>
+                    <label><input type="radio" name="q2" value="no"> Нет, у меня всё в телефоне</label>
+                </div>
+                <div class="test-question">
+                    <p>3. Знаешь ли ты прогноз погоды на ВСЕ дни похода?</p>
+                    <label><input type="radio" name="q3" value="yes"> Да, изучил(а) подробно</label>
+                    <label><input type="radio" name="q3" value="roughly"> Примерно, посмотрел(а) мельком</label>
+                    <label><input type="radio" name="q3" value="no"> Нет, погода не главное</label>
+                </div>
+                <div class="test-question">
+                    <p>4. Укомплектована ли у тебя аптечка первой помощи?</p>
+                    <label><input type="radio" name="q4" value="yes"> Да, всё по списку</label>
+                    <label><input type="radio" name="q4" value="partial"> Взял(а) только пластырь и обезболивающее</label>
+                    <label><input type="radio" name="q4" value="no"> Нет, в походе аптечка не нужна</label>
+                </div>
+                <div class="test-question">
+                    <p>5. Сообщил(а) ли ты близким точный маршрут и время возвращения?</p>
+                    <label><input type="radio" name="q5" value="yes"> Да, всё подробно записал(а) и передал(а)</label>
+                    <label><input type="radio" name="q5" value="roughly"> Сказал(а) примерно: «буду в горах пару дней»</label>
+                    <label><input type="radio" name="q5" value="no"> Нет, я же не ребёнок</label>
+                </div>
+                <div class="test-question">
+                    <p>6. Есть ли у тебя с собой средства навигации кроме телефона (компас, GPS-трекер)?</p>
+                    <label><input type="radio" name="q6" value="yes"> Да, компас и/или GPS</label>
+                    <label><input type="radio" name="q6" value="no"> Нет, хватит телефона</label>
+                </div>
+                <div class="test-question">
+                    <p>7. Знаешь ли ты, как подать сигнал бедствия?</p>
+                    <label><input type="radio" name="q7" value="yes"> Да: 6 коротких сигналов, пауза, повторить</label>
+                    <label><input type="radio" name="q7" value="no"> Нет, не знаю</label>
+                </div>
+                <div class="test-question">
+                    <p>8. Тренировал(а) ли ты физическую форму перед походом?</p>
+                    <label><input type="radio" name="q8" value="yes"> Да, регулярно занимаюсь</label>
+                    <label><input type="radio" name="q8" value="partial"> Немного хожу пешком</label>
+                    <label><input type="radio" name="q8" value="no"> Нет, горы сами натренируют</label>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="checkTest()" style="display:block;margin:20px auto;">✅ Узнать результат</button>
+            </form>
+
+            <div class="test-result" id="test-result-good">
+                <p>🏆 <strong>Отлично! Ты хорошо подготовлен(а)!</strong></p>
+                <p>Ты знаешь правила безопасности и ответственно относишься к походу. Осталось проверить снаряжение по чек-листу — и можно выходить на маршрут!</p>
+            </div>
+            <div class="test-result" id="test-result-ok">
+                <p>⚠️ <strong>Неплохо, но есть пробелы.</strong></p>
+                <p>У тебя есть базовые знания, но некоторые важные моменты упущены. Вернись к разделам памятки и закрой слабые места — особенно про регистрацию маршрута и аптечку.</p>
+            </div>
+            <div class="test-result" id="test-result-bad">
+                <p>🚫 <strong>Ты не готов(а) к походу!</strong></p>
+                <p>Это честный результат. Пренебрежение базовыми правилами безопасности может стоить жизни тебе и твоей группе. Пожалуйста, внимательно изучи памятку от начала до конца и подготовься как следует.</p>
             </div>
         </div>
 
@@ -777,11 +1195,59 @@
 
     <footer>
         <p>© 2025 Интерактивная памятка «Безопасность в горном туризме». Создано в рамках проекта.</p>
+        <p>Источники: МЧС России, Федерация альпинизма России, А.И. Мартынов «Психология альпинизма».</p>
         <p>Помни: твоя безопасность — в твоих руках! 🏔️</p>
     </footer>
 
     <script>
         console.log('Памятка готова к использованию! Береги себя в горах 🏔️');
+
+        function checkTest() {
+            const form = document.getElementById('test-form');
+            const answers = form.querySelectorAll('input[type="radio"]:checked');
+            
+            if (answers.length < 8) {
+                alert('Пожалуйста, ответь на все вопросы теста!');
+                return;
+            }
+
+            let score = 0;
+            const values = [];
+            answers.forEach(a => values.push(a.value));
+
+            if (values[0] === 'yes') score++;
+            if (values[1] === 'yes') score++;
+            if (values[2] === 'yes') score++;
+            if (values[3] === 'yes') score++;
+            if (values[4] === 'yes') score++;
+            if (values[5] === 'yes') score++;
+            if (values[6] === 'yes') score++;
+            if (values[7] === 'yes') score++;
+            if (values[7] === 'partial') score += 0.5;
+
+            document.getElementById('test-result-good').style.display = 'none';
+            document.getElementById('test-result-ok').style.display = 'none';
+            document.getElementById('test-result-bad').style.display = 'none';
+
+            if (score >= 7) {
+                const r = document.getElementById('test-result-good');
+                r.style.display = 'block';
+                r.style.background = '#e8f8f0';
+                r.style.border = '2px solid #27ae60';
+            } else if (score >= 4) {
+                const r = document.getElementById('test-result-ok');
+                r.style.display = 'block';
+                r.style.background = '#fef9e7';
+                r.style.border = '2px solid #f39c12';
+            } else {
+                const r = document.getElementById('test-result-bad');
+                r.style.display = 'block';
+                r.style.background = '#fdedec';
+                r.style.border = '2px solid #e74c3c';
+            }
+
+            document.getElementById('sec-test').scrollIntoView({behavior:'smooth'});
+        }
     </script>
 </body>
 </html>
